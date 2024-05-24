@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>간단한 퀴즈 게임</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #score {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>간단한 퀴즈 게임</h1>
+        <div id="question"></div>
+        <button onclick="checkAnswer(true)">True</button>
+        <button onclick="checkAnswer(false)">False</button>
+        <div id="score">Score: 0</div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "우왁굳의 생일은 7월 24일이다.",
+                answer: true
+            },
+            {
+                question: "우왁굳의 아내는 김수현 아나운서이다.",
+                answer: true
+            },
+            {
+                question: "우왁굳은 인천 송도에 거주중이다.",
+                answer: true
+            },
+            {
+                question: "인천 송도에는 고세구가 살고있다.",
+                answer: true
+            },
+            {
+                question: "우왁굳이 몰던 차 중 페리도트 그린이 있다.",
+                answer: true
+            },
+            {
+                question: "우왁굳의 딸을 시청자는 그분 이라고 부른다",
+                answer: true
+            },
+            {
+                question: "우왁굳의 왁타버스 멤버는 40명이 넘는다",
+                answer: true
+            },
+            {
+                question: "우왁굳의 프로필 사진은 팬이 그려준 것이다.",
+                answer: true
+            },
+            {
+                question: "우왁굳의 캐릭터 모티브는 햄스터이다.",
+                answer: true
+            },
+            {
+                question: "우왁굳의 이세계 아이돌 펀딩 사업은 40억 이상이 모였다.",
+                answer: true
+            }
+        ];
+
+        let score = 0;
+        let currentQuestion = 0;
+
+        function displayQuestion() {
+            document.getElementById("question").innerHTML = questions[currentQuestion].question;
+        }
+
+        function checkAnswer(userAnswer) {
+            if (userAnswer === questions[currentQuestion].answer) {
+                score++;
+                document.getElementById("score").innerHTML = "Score: " + score;
+            }
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                displayQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            alert("게임 종료! 당신의 점수는 " + score + "점입니다.");
+            resetGame();
+        }
+
+        function resetGame() {
+            score = 0;
+            currentQuestion = 0;
+            displayQuestion();
+            document.getElementById("score").innerHTML = "Score: 0";
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>
